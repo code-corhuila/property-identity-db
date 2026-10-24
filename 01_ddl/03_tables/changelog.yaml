@@ -1,1 +1,52 @@
-databaseChangeLog: []
+databaseChangeLog:
+  - changeSet:
+      id: ddl-tables-001
+      author: CharithNikool5
+      labels: "HU-IDENT-001,ddl,tables"
+      comment: "user_account: the account, its single role and its lock (failed_logins, locked_until)."
+      changes:
+        - sqlFile:
+            path: 001_create_user_account.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/001_create_user_account.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+  - changeSet:
+      id: ddl-tables-002
+      author: CharithNikool5
+      labels: "HU-IDENT-001,ddl,tables"
+      comment: "refresh_token: the refresh tokens of each session, hashed. No foreign keys here, they go in 04_alter."
+      changes:
+        - sqlFile:
+            path: 002_create_refresh_token.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/002_create_refresh_token.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+  - changeSet:
+      id: ddl-tables-003
+      author: CharithNikool5
+      labels: "HU-IDENT-001,ddl,tables"
+      comment: "idempotency_key: the key each account was created with."
+      changes:
+        - sqlFile:
+            path: 003_create_idempotency_key.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
+      rollback:
+        - sqlFile:
+            path: ../../05_rollbacks/01_ddl/03_tables/003_create_idempotency_key.rollback.sql
+            relativeToChangelogFile: true
+            splitStatements: false
+            stripComments: false
